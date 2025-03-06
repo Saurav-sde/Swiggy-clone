@@ -5,9 +5,14 @@ export default function RestCard({restInfo}){
     return (
         <Link to={"/city/delhi/" + restInfo?.info?.id}>
             <div className="max-w-[280px] mb-2 cursor-pointer transform transition duration-200 hover:scale-95">
-                <img src={"https://media-assets.swiggy.com/swiggy/image/upload/" + restInfo?.info?.cloudinaryImageId} className="h-45 w-70 object-cover rounded-xl" ></img>
+                <div className="relative w-[100%] h-[100%]">
+                    <img src={"https://media-assets.swiggy.com/swiggy/image/upload/" + restInfo?.info?.cloudinaryImageId} className="h-45 w-70 object-cover rounded-xl" ></img>
+                    <span className="absolute left-2 bottom-2 text-white text-xl z-10 font-bold">  {restInfo?.info?.aggregatedDiscountInfoV3?.header || ""}{" "}
+                    {restInfo?.info?.aggregatedDiscountInfoV3?.subHeader || ""}</span>
+                    <div className="absolute bg-gradient-to-t from-black h-26 bottom-0 left-0 right-0"></div>
+                </div>
                 <div className="w-[95%] mx-auto mt-5">
-                    <div className="font-bold text-xl">{restInfo?.info?.name}</div>
+                    <div className="font-bold text-xl w-[80%] truncate">{restInfo?.info?.name}</div>
                     <div className="flex items-center gap-2">
                         <div className="flex items-center gap-0">
                             <svg className="w-6 h-6 fill-green-600" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
@@ -17,7 +22,8 @@ export default function RestCard({restInfo}){
                         </div>
                         <span className="text-lg font-semibold">{restInfo?.info?.sla?.slaString}</span>
                     </div>
-                    <div className="text-gray-600 text-xl mt-1 overflow-hidden h-7">{restInfo?.info?.cuisines.join(", ")}</div>
+                    <div className="text-gray-600 text-xl mt-1 w-[90%] truncate h-7">{restInfo?.info?.cuisines.join(", ")}</div>
+                    <div className="text-gray-600 text-xl mt-1 w-[90%] truncate h-7">{restInfo?.info?.areaName}</div>
                 </div>
             </div>
         </Link> 

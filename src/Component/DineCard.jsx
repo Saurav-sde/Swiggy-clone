@@ -4,7 +4,7 @@ export default function DineCard({RestData}){
     return (
         <div className="max-w-sm flex-none min-w-82 bg-white rounded-[16px]  drop-shadow-[0px_0px_7.905px_rgba(27,30,36,0.08)] mb-20">
             <a a href={RestData?.cta?.link} target="_blank">
-                <div>
+                <div>       
                     <div className="relative w-[100%] h-[100%]">
                         <img className="w-full h-50 rounded-t-[16px] object-cover" src={`https://media-assets.swiggy.com/swiggy/image/upload/${RestData?.info?.mediaFiles[0]?.url}`}></img>
                         <p className="absolute left-2 bottom-2 text-white text-xl z-10 w-[70%] truncate font-bold">{RestData?.info?.name}</p>

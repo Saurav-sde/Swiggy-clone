@@ -3,10 +3,13 @@ import RestCard from "./RestCard";
 import Shimmer from "./Shimmer";
 import RestHeader from "./RestHeader";
 import FoodOption from "./FoodOption";
+import RestCardOption from "./RestCardOption";
+import RestFoodOption from "./RestFoodOption";
 
 export default function Restaurant(){
 
     const[RestData,setRestData] = useState([]);
+    const[foodData,setFoodData] = useState([]);
 
     useEffect(()=>{
         async function fetchData() {
@@ -15,6 +18,7 @@ export default function Restaurant(){
             const response = await fetch(proxyServer + swiggyAPI);
             const data = await response.json();
             setRestData(data?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+            setFoodData(data?.data?.cards[0]?.card?.card?.imageGridCards?.info);
         }
         fetchData();
     },[])
@@ -24,13 +28,8 @@ export default function Restaurant(){
 
     return (
         <div className="bg-gray-50">
-            <RestHeader/>
-            <FoodOption />
-            <div className="flex flex-wrap w-[80%] mx-auto mt-20 gap-5">
-                {
-                    RestData.map((restInfo)=><RestCard key={restInfo?.info?.id} restInfo={restInfo}/>)
-                }
-            </div>
+            <RestFoodOption foodData={foodData}/>
+            <RestCardOption restData={RestData}/>
         </div>
     )
 }
